@@ -1,0 +1,91 @@
+.status_wrapper {
+  text-align: center;
+  color: #fff;
+}
+
+.location_header {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.date_header {
+  color: #fff;
+  font-size: 16px;
+}
+
+.temp_header {
+  color: #fff;
+  font-size: 72px;
+  font-weight: 900;
+  text-shadow: 2px 4px rgba(0, 0, 0, 0.6);
+  margin: 30px 0;
+}
+
+.temp_header span {
+  font-weight: 500;
+}
+
+/* Card One  */
+
+.card_one_wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.card_one_icon {
+  height: 48px;
+  width: 48px;
+}
+
+.card_one_status {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+  font-style: italic;
+  text-shadow: 0 3px rgba(0, 0, 0, 0.4);
+  margin: 0 1.3rem;
+}
+
+.card_one_minmax_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.card_one_minmax {
+  display: flex;
+  font-weight: 500;
+  color: #fff;
+  font-size: 1.35rem;
+}
+
+.card_one_minmax svg {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.25rem;
+}
+
+/* Card Two */
+
+.card_two_wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 3rem 0;
+}
+
+.card_two_child {
+  display: flex;
+  flex-direction: column;
+}
+
+.card_two_temp {
+  color: #fff;
+  font-size: 2rem;
+}
+
+.card_two_title {
+  font-size: 1.4rem;
+  font-style: italic;
+}
