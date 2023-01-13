@@ -1,4 +1,16 @@
 export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    res.status(400).json({
+      error: "Method not allowed",
+    });
+  }
+
+  if (!req.body.lat || !req.body.lon) {
+    res.status(400).json({
+      error: "Required coordinate field empty",
+    });
+  }
+
   const coordinates = {
     lat: req.body.lat,
     lon: req.body.lon,

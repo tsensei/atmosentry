@@ -1,6 +1,28 @@
+import { useRef, useState } from "react";
 import classes from "./Searchbar.module.css";
 
-const Searchbar = () => {
+const Searchbar = ({ setQuery }) => {
+  const [inputVal, setInputVal] = useState("");
+  const inputRef = useRef();
+
+  const handleInputChange = () => {
+    setInputVal(inputRef.current.value);
+  };
+
+  const handleClick = () => {
+    setQuery(inputRef.current.value);
+
+    setInputVal("");
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      setQuery(inputRef.current.value);
+
+      setInputVal("");
+    }
+  };
+
   return (
     <div className={classes.searchbar_wrapper}>
       <div className={classes.icon_wrapper}>
@@ -20,9 +42,15 @@ const Searchbar = () => {
         </svg>
       </div>
       <div className={classes.input_wrapper}>
-        <input type='text' />
+        <input
+          type='text'
+          ref={inputRef}
+          onKeyDown={handleKeyDown}
+          value={inputVal}
+          onChange={handleInputChange}
+        />
       </div>
-      <div className={classes.icon_wrapper}>
+      <div className={classes.icon_wrapper} onClick={handleClick}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
