@@ -26,6 +26,12 @@ export default async function handler(req, res) {
 
   try {
     const geoResponse = await geocoder.geocode(query);
+    if (geoResponse.length === 0) {
+      return res.status(400).json({
+        error: "Invalid location",
+      });
+    }
+
     const coordinates = {
       lat: geoResponse[0].latitude,
       lon: geoResponse[0].longitude,

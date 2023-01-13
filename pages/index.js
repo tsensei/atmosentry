@@ -5,6 +5,7 @@ import WeatherStatus from "../components/WeatherStatus";
 import Footer from "../components/Footer";
 import Head from "next/head";
 import Loader from "../components/Loader";
+import ErrorPanel from "../components/ErrorPanel";
 
 const Homepage = () => {
   const [data, setData] = useState(null);
@@ -27,22 +28,24 @@ const Homepage = () => {
           },
           body: JSON.stringify(coordinates),
         })
-          .then((response) => response.json())
-          .then((result) => setData(result))
-          .catch((err) => console.log(err));
+          .then(async (response) => {
+            const data = await response.json();
+
+            if (!response.ok) {
+              const error = data.error;
+              return Promise.reject(error);
+            } else {
+              setData(data);
+            }
+          })
+          .catch((error) => setErrMsg(error));
         // TODO : Implement error status
       });
     } else {
       // TODO : Implement error status
-      console.log("Geolocation is not available");
+      setErrMsg("Geolocation is not available");
     }
   }, []);
-
-  // * Logs change in data
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   useEffect(() => {
     if (!query) {
@@ -62,9 +65,17 @@ const Homepage = () => {
       },
       body: JSON.stringify(body),
     })
-      .then((response) => response.json())
-      .then((result) => setData(result))
-      .catch((err) => console.log(err));
+      .then(async (response) => {
+        const data = await response.json();
+
+        if (!response.ok) {
+          const error = data.error;
+          return Promise.reject(error);
+        } else {
+          setData(data);
+        }
+      })
+      .catch((error) => setErrMsg(error));
   }, [query]);
 
   return (
@@ -75,6 +86,7 @@ const Homepage = () => {
       </Head>
       <Layout>
         <Searchbar setQuery={setQuery} />
+        {errMsg && <ErrorPanel msg={errMsg} />}
         {data ? <WeatherStatus data={data} /> : <Loader />}
         <Footer />
       </Layout>

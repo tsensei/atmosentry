@@ -30,3 +30,9 @@
   height: 1.5rem;
   width: 1.5rem;
 }
+
+@media only screen and (min-width: 600px) {
+  .searchbar_wrapper {
+    width: 40%;
+  }
+}

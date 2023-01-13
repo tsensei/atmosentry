@@ -19,7 +19,7 @@
   color: #fff;
   font-size: 72px;
   font-weight: 900;
-  text-shadow: 2px 4px rgba(0, 0, 0, 0.6);
+  text-shadow: 2px 6px rgba(0, 0, 0, 0.6);
   margin: 30px 0;
 }
 
@@ -89,4 +89,23 @@
 .card_two_title {
   font-size: 1.4rem;
   font-style: italic;
+}
+
+@media only screen and (min-width: 600px) {
+  .location_header {
+    font-size: 38px;
+    margin: 1rem 0;
+  }
+
+  .temp_header {
+    margin: 3rem 0;
+  }
+
+  .date_header {
+    font-size: 1.35rem;
+  }
+
+  .card_one_wrapper {
+    margin: 4rem 0;
+  }
 }

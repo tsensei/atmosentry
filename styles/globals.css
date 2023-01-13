@@ -8,7 +8,9 @@ main {
   min-height: 100vh;
   width: 100%;
   /* Set background image here */
-  background-color: skyblue;
+  background-image: url("/bg.png");
+  background-size: cover;
+  background-position: center center;
 }
 
 .loader {
