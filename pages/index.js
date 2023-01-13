@@ -9,6 +9,7 @@ import Loader from "../components/Loader";
 const Homepage = () => {
   const [data, setData] = useState(null);
   const [query, setQuery] = useState(null);
+  const [errMsg, setErrMsg] = useState(null);
 
   useEffect(() => {
     // Check if geolocation api available

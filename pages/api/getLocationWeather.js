@@ -2,7 +2,7 @@ var NodeGeocoder = require("node-geocoder");
 
 var geocoder = NodeGeocoder({
   provider: "opencage",
-  apiKey: "4b08e5a1590a4dcebd4c358288d58f75",
+  apiKey: process.env.geocodeApiKey,
 });
 
 export default async function handler(req, res) {
