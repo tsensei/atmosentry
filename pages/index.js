@@ -13,30 +13,57 @@ const Homepage = () => {
   const [errMsg, setErrMsg] = useState(null);
 
   useEffect(() => {
-    const getPosition = (position) => {
+    // const getPosition = (position) => {
+    //   const coordinates = {
+    //     lat: position.coords.latitude,
+    //     lon: position.coords.longitude,
+    //   };
+
+    //   fetch("/api/getCurrentWeather", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(coordinates),
+    //   })
+    //     .then(async (response) => {
+    //       const data = await response.json();
+
+    //       if (!response.ok) {
+    //         const error = data.error;
+    //         return Promise.reject(error);
+    //       } else {
+    //         setData(data);
+    //       }
+    //     })
+    //     .catch((error) => setErrMsg(error));
+    // };
+
+    const getPosition = async (position) => {
       const coordinates = {
         lat: position.coords.latitude,
         lon: position.coords.longitude,
       };
 
-      fetch("/api/getCurrentWeather", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(coordinates),
-      })
-        .then(async (response) => {
-          const data = await response.json();
+      try {
+        const response = await fetch("/api/getCurrentWeather", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(coordinates),
+        });
 
-          if (!response.ok) {
-            const error = data.error;
-            return Promise.reject(error);
-          } else {
-            setData(data);
-          }
-        })
-        .catch((error) => setErrMsg(error));
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error);
+        } else {
+          setData(data);
+        }
+      } catch (error) {
+        setErrMsg(error.message);
+      }
     };
 
     const handleError = (error) => {
@@ -76,24 +103,29 @@ const Homepage = () => {
       query: query,
     };
 
-    fetch("/api/getLocationWeather", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    })
-      .then(async (response) => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/getLocationWeather", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        });
+
         const data = await response.json();
 
         if (!response.ok) {
-          const error = data.error;
-          return Promise.reject(error);
+          throw new Error(data.error);
         } else {
           setData(data);
         }
-      })
-      .catch((error) => setErrMsg(error));
+      } catch (error) {
+        setErrMsg(error.message);
+      }
+    };
+
+    fetchData();
   }, [query]);
 
   return (

@@ -46,7 +46,7 @@ const WeatherStatus = ({ data }) => {
                 viewBox='0 0 24 24'
                 strokeWidth='2.5'
                 stroke='white'
-                class='w-6 h-6'
+                className='w-6 h-6'
               >
                 <path
                   strokeLinecap='round'
@@ -63,7 +63,7 @@ const WeatherStatus = ({ data }) => {
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
                 viewBox='0 0 24 24'
-                stroke-width='2.5'
+                strokeWidth='2.5'
                 stroke='white'
                 className='w-6 h-6'
               >
