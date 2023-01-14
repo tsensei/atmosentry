@@ -13,36 +13,54 @@ const Homepage = () => {
   const [errMsg, setErrMsg] = useState(null);
 
   useEffect(() => {
+    const getPosition = (position) => {
+      const coordinates = {
+        lat: position.coords.latitude,
+        lon: position.coords.longitude,
+      };
+
+      fetch("/api/getCurrentWeather", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(coordinates),
+      })
+        .then(async (response) => {
+          const data = await response.json();
+
+          if (!response.ok) {
+            const error = data.error;
+            return Promise.reject(error);
+          } else {
+            setData(data);
+          }
+        })
+        .catch((error) => setErrMsg(error));
+    };
+
+    const handleError = (error) => {
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          setErrMsg(
+            "Permission denied for location. Please turn on your location service and try again."
+          );
+          break;
+        case error.POSITION_UNAVAILABLE:
+          setErrMsg("Location info is unavailable");
+          break;
+        case error.TIMEOUT:
+          setErrMsg("Request to get location timed out");
+          break;
+        case error.UNKNOWN_ERROR:
+          setErrMsg("An unknown error occured");
+          break;
+      }
+    };
     // Check if geolocation api available
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const coordinates = {
-          lat: position.coords.latitude,
-          lon: position.coords.longitude,
-        };
-
-        fetch("/api/getCurrentWeather", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(coordinates),
-        })
-          .then(async (response) => {
-            const data = await response.json();
-
-            if (!response.ok) {
-              const error = data.error;
-              return Promise.reject(error);
-            } else {
-              setData(data);
-            }
-          })
-          .catch((error) => setErrMsg(error));
-        // TODO : Implement error status
-      });
+      navigator.geolocation.getCurrentPosition(getPosition, handleError);
     } else {
-      // TODO : Implement error status
       setErrMsg("Geolocation is not available");
     }
   }, []);

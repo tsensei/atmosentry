@@ -9,8 +9,9 @@ const ErrorPanel = ({ msg }) => {
   return (
     <div className={classes.error_container}>
       <p>{msg}</p>
+      <br />
       <p>
-        Please <button onClick={handleReload}>reload</button> the page
+        Click to <button onClick={handleReload}>reload</button> the page
       </p>
     </div>
   );
