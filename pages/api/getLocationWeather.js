@@ -1,16 +1,16 @@
 var NodeGeocoder = require("node-geocoder");
 
-var geocoder = NodeGeocoder({
-  provider: "opencage",
-  apiKey: process.env.geocodeApiKey,
-});
-
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.status(400).json({
       error: "Method not allowed",
     });
   }
+
+  var geocoder = NodeGeocoder({
+    provider: "opencage",
+    apiKey: process.env.geocodeApiKey,
+  });
 
   const apiKey = process.env.apiKey;
 
