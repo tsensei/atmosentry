@@ -133,6 +133,10 @@ const Homepage = () => {
       <Head>
         <link rel='shortcut icon' href='/favicon.png' />
         <title>AtmoSentry - Weather Forecast</title>
+        <meta
+          name='description'
+          content='A weather forecasting app built with NextJS and OpenWeatherMap'
+        />
       </Head>
       <Layout>
         <Searchbar setQuery={setQuery} />
