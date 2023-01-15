@@ -137,6 +137,16 @@ const Homepage = () => {
           name='description'
           content='A weather forecasting app built with NextJS and OpenWeatherMap'
         />
+        <meta
+          property='og:title'
+          content='A weather forecasting app built with NextJS and OpenWeatherMap'
+        />
+        <meta property='og:type' content='website' />
+        <meta
+          property='og:image'
+          content='https://raw.githubusercontent.com/tsensei/atmosentry/main/public/og-img.png'
+        />
+        <meta property='og:url' content='https://atmosentry.vercel.app' />
       </Head>
       <Layout>
         <Searchbar setQuery={setQuery} />
