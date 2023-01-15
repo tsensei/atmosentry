@@ -132,15 +132,12 @@ const Homepage = () => {
     <div>
       <Head>
         <link rel='shortcut icon' href='/favicon.png' />
-        <title>AtmoSentry - Weather Forecast</title>
+        <title>AtmoSentry</title>
         <meta
           name='description'
-          content='A weather forecasting app built with NextJS and OpenWeatherMap'
+          content='A weather info app built with NextJS and OpenWeatherMap'
         />
-        <meta
-          property='og:title'
-          content='A weather forecasting app built with NextJS and OpenWeatherMap'
-        />
+        <meta property='og:title' content='AtmoSentry' />
         <meta property='og:type' content='website' />
         <meta
           property='og:image'
