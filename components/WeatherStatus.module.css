@@ -110,3 +110,37 @@
     margin: 4rem 0;
   }
 }
+
+@media screen and (max-height: 710px) {
+  .location_header {
+    font-size: 30px;
+  }
+  .temp_header {
+    margin: 15px 0;
+    font-size: 58px;
+  }
+
+  .temp_header span {
+    font-size: 48px;
+  }
+
+  .card_one_status {
+    font-size: 28px;
+  }
+
+  .card_one_minmax {
+    font-size: 1.15rem;
+  }
+
+  .card_two_wrapper {
+    margin: 2rem 0;
+  }
+
+  .card_two_temp {
+    font-size: 1.8rem;
+  }
+
+  .card_two_title {
+    font-size: 1.3rem;
+  }
+}
